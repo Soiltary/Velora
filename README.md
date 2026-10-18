@@ -1,6 +1,23 @@
+<p align="center"><img src="assets/velora.png" alt="Velora" width="80" height="80"></p>
+
 # Velora
 
 A new form. The same flow.
+
+**Current version: 1.2.1 · Windows 10 / 11 x64 · English / العربية**
+
+### [Download Velora for Windows — 108.9 MB](https://github.com/Soiltary/Velora/releases/download/v1.2.1/Velora-Windows-x64-v1.2.1.zip)
+
+[Website](https://velora-windows.soltairy.chatgpt.site/) · [Release notes](https://github.com/Soiltary/Velora/releases/tag/v1.2.1) · [Portable guide](docs/PORTABLE.md) · [Checksums](downloads/SHA256SUMS.txt)
+
+Download the ZIP above to run Velora. GitHub’s **Code → Download ZIP** contains the source code, not the portable Windows runtime.
+
+## Current interface
+
+| English | العربية |
+| --- | --- |
+| ![Velora English interface](docs/media/velora-windows-en.png) | ![واجهة Velora العربية](docs/media/velora-windows-ar.png) |
+
 
 An independent offline file converter for **Windows 10 / 11, x64**. Drop files, select a format, and convert them locally. Includes a global keyboard shortcut, an Explorer drag wheel, batch conversion, PDF tools, image tools, and a custom app icon. Version **1.2.1**.
 
@@ -16,7 +33,7 @@ The executable is unsigned. There is no digital publisher certificate. Build it 
 
 ## Drag wheel
 
-### Open first, then drag (new in 1.1)
+### Open first, then drag
 
 Keep Velora running in the background and press **Ctrl + Space**. The wheel appears beside the mouse pointer and stays open, so you can release both keys, pick up a file and drag it onto the wheel. Compatible formats appear when the file enters the circle. Drop onto a format to convert. The main window can remain hidden throughout.
 
@@ -91,8 +108,6 @@ The portable runtime uses `runtime/python312._pth` with `python312.zip`, `.`, `L
 
 ## Validation
 
-Twelve automated tests cover real image exports, Unicode paths, collision handling, original preservation, actual video/audio conversion, PDF rendering/splitting/merging, subtitle timestamp round-trips, spreadsheet text safety, document conversion, ZIP output, cancellation cleanup, shortcut parsing and conflict recovery, native hotkey message dispatch through an injected API, and the complete hidden-window → open wheel → drag/drop → actual conversion flow. The Qt main window and wheel were rendered and inspected on Linux with the offscreen platform.
-
 The release workflow runs the actual portable Windows Python and Qt libraries through 21 automated conversion, language and shortcut tests before packaging. It also validates ZIP CRC and generates SHA-256 inventories. Desktop behavior with your own applications and separately installed LibreOffice may vary.
 
 ## License
@@ -111,3 +126,17 @@ Velora source code is licensed under GNU AGPL v3 or later; see `LICENSE.txt`. Th
 Download: https://github.com/Soiltary/Velora/releases/download/v1.2.1/Velora-Windows-x64-v1.2.1.zip
 
 Full source and the Windows validation / packaging workflow are in this repository.
+
+
+## العربية
+
+حمّل **Velora 1.2.1** من رابط التحميل أعلى الصفحة. أغلق النسخة القديمة من أيقونتها بجانب الساعة، ثم فك ضغط الملف الجديد بالكامل وافتح **Velora.exe**. لا تخلط مجلد التشغيل مع ملفات إصدار قديم.
+
+- زر اللغة أعلى النافذة يبدّل بين العربية والإنجليزية ويحفظ اختيارك
+- تحويل PDF إلى Word بصيغة DOCX مع إبقاء النص قابلًا للتعديل؛ الصفحات الممسوحة تبقى صورًا دون OCR
+- تحويل DOCX إلى PDF يعمل محليًا دون Office بصفحات مصوّرة وتنسيق مبسّط؛ يستخدم LibreOffice عند توفره لتنسيق أغنى ونص قابل للتحديد
+- PDF إلى صور JPG وPNG، ودمج الملفات وتقسيمها، وبقية أدوات الصور والصوت والفيديو
+- اختصار Ctrl + Space يفتح دائرة التحويل في الخلفية
+- قسم دعم اختياري يساعد على استمرار تطوير الأداة
+
+تحميل **Code → Download ZIP** من GitHub ينزّل المصدر البرمجي؛ لتشغيل البرنامج استخدم رابط **Download Velora for Windows** أعلى الصفحة.
