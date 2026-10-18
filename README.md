@@ -6,7 +6,7 @@
 
 Velora is a Windows desktop tool for converting files and handling everyday file edits in one interface. Its promotional video presents a local processing workflow that keeps your files on your device instead of uploading them to an online conversion service.
 
-> This guide is based on the supplied promotional video. The Windows package has not yet been inspected or tested. The features below are shown in the video; availability may vary by version and file format.
+> The walkthrough below describes the promotional video. The Windows package has been inspected and repacked to remove unused files. The repacked application has not been run on Windows in this session; see the [portable guide](docs/PORTABLE.md) for verification details.
 
 ## Watch the demo
 
@@ -18,9 +18,11 @@ Click the image or link to open the video file on GitHub. If a player is unavail
 
 ## Download
 
-The supplied package is named `Velora-Windows-x64 (1).zip` and is intended for Windows x64. **The package has not been uploaded yet, and no downloadable release has been published.**
+**[Download Velora for Windows x64](https://github.com/Soiltary/Velora/releases/download/v1.1.1/Velora-Windows-x64.zip)** — portable ZIP, no installer. Supports Windows 10 / 11 x64, according to the included application documentation.
 
-Once published, the application package will be available on the [Velora releases page](https://github.com/Soiltary/Velora/releases). The demo and documentation do not include the application itself.
+Extract the entire ZIP, then open **Velora.exe**. Keep `runtime/`, `velora/`, `main.py`, and the other accompanying files together. Python, Qt, conversion libraries and FFmpeg are bundled. Office-to-PDF conversion requires LibreOffice installed separately.
+
+See the [release page](https://github.com/Soiltary/Velora/releases/tag/v1.1.1) for the package and SHA-256 checksum, and the [portable application guide](docs/PORTABLE.md) for supported formats and limitations.
 
 ## Features at a glance
 
@@ -38,14 +40,14 @@ The demo shows a batch of PNG images being converted to WEBP. The image wheel al
 
 ## Get started on Windows
 
-After the package is published:
+To start the portable application:
 
-1. Download the Windows x64 package from the releases page.
+1. [Download the Windows x64 ZIP](https://github.com/Soiltary/Velora/releases/download/v1.1.1/Velora-Windows-x64.zip).
 2. Extract the entire archive into its own folder before running it. Keep the accompanying files together with the application.
-3. Follow any startup instructions included in the package. The executable name and additional runtime requirements have not yet been verified.
+3. Open **Velora.exe**. Read `START_HERE.txt` and the included `README.md` for instructions. Office-to-PDF conversion requires LibreOffice.
 4. Start with a sample file and inspect the output before processing a larger batch.
 
-Minimum Windows and memory requirements have not been documented, and the package's digital signature has not been verified.
+The included guide targets Windows 10 / 11 x64 and identifies the launcher as unsigned. Minimum memory requirements have not been documented.
 
 ## Convert files step by step
 
@@ -71,7 +73,7 @@ The demo presents PDF splitting, merging, and text extraction; image resizing, r
 
 ## Privacy
 
-The demo emphasizes **Local processing / Offline / No uploads**, describing conversion on your device. This is the product description shown in the video, rather than the result of a source code or network audit. The Windows package was unavailable for inspection in this session.
+The demo emphasizes **Local processing / Offline / No uploads**, describing conversion on your device. This is the product description shown in the video, rather than the result of a source code or network audit. The package source was inspected during repacking; no network audit was performed.
 
 ## Troubleshooting
 
@@ -79,7 +81,7 @@ The demo emphasizes **Local processing / Offline / No uploads**, describing conv
 - **A conversion fails:** Review the file status and error message. Try a small, known-good input and an output folder you can write to.
 - **You cannot find the results:** Click **Show output** and check the destination selected with **Choose folder**.
 - **The shortcut does not work:** Try **Open wheel**, check **Shortcuts**, and look for shortcut conflicts with other applications.
-- **The application does not start:** Make sure the full package has been extracted on Windows x64, then include the error text in an issue report. Additional requirements cannot be confirmed until the package is inspected.
+- **The application does not start:** Make sure the full package has been extracted on Windows x64, then include the error text in an issue report. Check the included portable guide for requirements and limitations.
 
 ## Support and links
 
@@ -92,4 +94,6 @@ When reporting a problem, include your Windows version, Velora version, input fi
 
 ## Repository contents and verification status
 
-This repository contains the guide, promotional video, and images extracted from that video. It does not currently include the application source code or Windows package. The video's metadata and displayed scenes have been reviewed; the application has not undergone functional testing. No usage or redistribution license should be assumed unless the owner explicitly provides one.
+This repository includes the English guide, promotional media, application source, build inputs, tests, and license notices. The portable Windows package is distributed through GitHub Releases. Unused development assets, caches, temporary files, duplicate libraries and Qt modules were removed; retained executable files are unchanged. Static dependency checks and ZIP integrity checks passed. Windows desktop behavior has not been tested in this session.
+
+Velora source is licensed under GNU AGPL v3 or later; see [LICENSE.txt](LICENSE.txt). Bundled components retain their own licenses; see [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md).
