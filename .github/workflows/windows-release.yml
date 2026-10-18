@@ -1,0 +1,62 @@
+name: Windows portable release
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'velora/**'
+      - 'main.py'
+      - 'tests/**'
+      - 'assets/fonts/**'
+      - '.github/workflows/windows-release.yml'
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: velora-windows-release
+  cancel-in-progress: false
+jobs:
+  build-test-release:
+    runs-on: windows-latest
+    timeout-minutes: 20
+    env:
+      QT_QPA_PLATFORM: offscreen
+    steps:
+      - uses: actions/checkout@v4
+      - name: Restore verified portable Windows runtime
+        shell: pwsh
+        run: |
+          $base = 'https://raw.githubusercontent.com/Soiltary/Velora/20c7210102a4007de3a68470b8b66811badf06db/downloads/Velora-Windows-x64.zip'
+          Invoke-WebRequest $base -OutFile base.zip
+          $expected = '9bbaa0b17e1704419edb046873ab5366a193cde9f839c9b99282acd9af28fcb9'
+          if ((Get-FileHash base.zip -Algorithm SHA256).Hash.ToLower() -ne $expected) { throw 'Runtime checksum mismatch' }
+          Expand-Archive base.zip -DestinationPath portable
+          Copy-Item velora portable/Velora/ -Recurse -Force
+          Copy-Item assets/fonts portable/Velora/assets/ -Recurse -Force
+          Copy-Item tests portable/Velora/ -Recurse -Force
+          Copy-Item main.py,requirements.txt,CHANGELOG.md,README.md portable/Velora/ -Force
+          Copy-Item docs/PORTABLE.md portable/Velora/START_HERE.txt -Force
+      - name: Test actual bundled Windows Python, Qt, converters and wheel
+        shell: pwsh
+        run: |
+          Set-Location portable/Velora
+          & ./runtime/python.exe -m unittest discover -s tests -v
+          if ($LASTEXITCODE -ne 0) { throw 'Windows portable tests failed' }
+      - name: Package and checksum
+        shell: pwsh
+        run: |
+          Remove-Item portable/Velora/tests -Recurse -Force
+          Get-ChildItem portable/Velora -Directory -Recurse -Filter __pycache__ | Remove-Item -Recurse -Force
+          $root = (Resolve-Path portable/Velora).Path
+          Get-ChildItem $root -File -Recurse | Where-Object { $_.Name -ne 'SHA256SUMS.txt' } | Sort-Object FullName | ForEach-Object { (Get-FileHash $_.FullName -Algorithm SHA256).Hash.ToLower() + '  ' + $_.FullName.Substring($root.Length + 1).Replace('\','/') } | Set-Content portable/Velora/SHA256SUMS.txt -Encoding utf8
+          Compress-Archive portable/Velora -DestinationPath Velora-Windows-x64-v1.2.0.zip -CompressionLevel Optimal
+          $hash = (Get-FileHash Velora-Windows-x64-v1.2.0.zip -Algorithm SHA256).Hash.ToLower()
+          "$hash  Velora-Windows-x64-v1.2.0.zip" | Set-Content SHA256SUMS.txt -Encoding ascii
+          & ./portable/Velora/runtime/python.exe -c "import zipfile; z=zipfile.ZipFile('Velora-Windows-x64-v1.2.0.zip'); assert z.testzip() is None"
+          if ($LASTEXITCODE -ne 0) { throw 'ZIP validation failed' }
+      - name: Publish tested portable release
+        shell: pwsh
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh release create v1.2.0 Velora-Windows-x64-v1.2.0.zip SHA256SUMS.txt --title 'Velora 1.2.0 — Arabic and PDF / Word' --notes-file docs/RELEASE-1.2.0.md --target '${{ github.sha }}'
+          if ($LASTEXITCODE -ne 0) { throw 'Release upload failed' }

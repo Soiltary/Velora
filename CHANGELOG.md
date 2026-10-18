@@ -1,12 +1,12 @@
+# 1.2.0
+
+- Added bilingual English/Arabic UI, saved language setting, RTL layout and bundled Arabic fonts.
+- Added PDF to editable DOCX with scanned-page image fallback.
+- Added basic DOCX to raster PDF without LibreOffice. Existing LibreOffice export remains preferred when installed.
+- Added optional Support dialog and refined wordmark / language control.
+- Added document regression tests and Windows portable release validation.
+
 # Changes
-
-## 1.1.1
-
-- Repair HEIC/HEIF native DLL placement on Windows.
-- Fix empty folder ZIPs when the output destination is an ancestor of the source.
-- Trim unused Qt components, developer artifacts and incomplete temporary files.
-- Keep UTF-8 assertions portable on Windows and add two regression tests.
-- Refresh package integrity hashes.
 
 ## 1.1.0
 

@@ -46,7 +46,7 @@ def actions(path: Path, tools=False) -> list[str]:
     if ext in AUDIO:
         return ['mp3', 'wav', 'flac', 'm4a', 'ogg', 'opus', 'aiff']
     if ext == '.pdf':
-        return ['png', 'jpg', 'txt']
+        return ['png', 'jpg', 'docx', 'txt']
     if ext in {'.srt', '.vtt'}:
         return ['srt', 'vtt', 'txt']
     if ext in {'.csv', '.tsv', '.xlsx'}:
@@ -77,6 +77,8 @@ def ffmpeg():
     bundled = Path(__file__).resolve().parent.parent / 'vendor' / 'ffmpeg.exe'
     if bundled.is_file():
         return str(bundled)
+    if os.name != 'nt' and shutil.which('ffmpeg'):
+        return shutil.which('ffmpeg')
     import imageio_ffmpeg
     return imageio_ffmpeg.get_ffmpeg_exe()
 
@@ -184,6 +186,9 @@ def _media(src, target, out, opts, cancel):
 
 def _pdf(src, target, out, opts, cancel):
     import fitz
+    if target == 'docx':
+        from .documents import pdf_to_word
+        return pdf_to_word(src, out, cancel)
     results = []
     with fitz.open(src) as doc:
         if doc.needs_pass:
@@ -286,6 +291,9 @@ def _table(src, target, out, cancel):
 def _text(src, target, out, cancel):
     from docx import Document
     if target == 'pdf':
+        if src.suffix.lower() == '.docx' and not libreoffice():
+            from .documents import docx_to_pdf
+            return docx_to_pdf(src, out, cancel)
         return office_convert(src, 'pdf', out, cancel)
     if src.suffix.lower() == '.docx':
         if target == 'docx':
