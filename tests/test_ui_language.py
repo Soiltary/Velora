@@ -19,8 +19,8 @@ class LanguageTests(unittest.TestCase):
   try:
    with tempfile.TemporaryDirectory() as tmp:
     path=Path(tmp)/'Ready صورة.png';Image.new('RGB',(20,20),'purple').save(path)
-    window.add_paths([str(path)]);window.target.setCurrentIndex(window.target.findData('jpg'));before=list(window.paths)
-    window.toggle_language();APP.processEvents()
+    window.add_paths([str(path)]);window.show();APP.processEvents();(ROOT/'qa').mkdir(exist_ok=True);window.grab().save(str(ROOT/'qa/english.png'));window.target.setCurrentIndex(window.target.findData('jpg'));before=list(window.paths)
+    window.toggle_language();APP.processEvents();window.grab().save(str(ROOT/'qa/arabic.png'))
     self.assertEqual(language(),'ar');self.assertEqual(window.layoutDirection(),Qt.RightToLeft)
     self.assertEqual(window.paths,before);self.assertEqual(window.target.currentData(),'jpg')
     self.assertEqual(window.table.item(0,0).text(),path.name)

@@ -148,18 +148,17 @@ def docx_to_pdf(src, out, cancel=None):
         if number >= 250:
             raise ValueError('Word to PDF supports up to 250 output pages.')
         return fitz.Rect(0,0,595,842), fitz.Rect(48,48,547,794), None
-    writer = fitz.DocumentWriter(str(target))
+    rendered_bytes = io.BytesIO()
+    writer = fitz.DocumentWriter(rendered_bytes)
     try:
         story.write(writer, rectfn)
     finally:
         writer.close()
     cancelled(cancel)
-    raster_target = out / 'velora-rendered.pdf'
-    with fitz.open(target) as rendered, fitz.open() as result:
+    with fitz.open(stream=rendered_bytes.getvalue(),filetype='pdf') as rendered, fitz.open() as result:
         for page in rendered:
             cancelled(cancel)
             pix = page.get_pixmap(dpi=150, alpha=False)
             result.new_page(width=page.rect.width,height=page.rect.height).insert_image(page.rect,stream=pix.tobytes('jpg',jpg_quality=94))
-        result.save(raster_target,deflate=True)
-    os.replace(raster_target,target)
+        result.save(target,deflate=True)
     return [target]

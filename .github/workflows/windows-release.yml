@@ -41,10 +41,17 @@ jobs:
           Set-Location portable/Velora
           & ./runtime/python.exe -m unittest discover -s tests -v
           if ($LASTEXITCODE -ne 0) { throw 'Windows portable tests failed' }
+      - name: Save interface diagnostics
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: windows-interface-qa
+          path: portable/Velora/qa/*.png
       - name: Package and checksum
         shell: pwsh
         run: |
           Remove-Item portable/Velora/tests -Recurse -Force
+          Remove-Item portable/Velora/qa -Recurse -Force -ErrorAction SilentlyContinue
           Get-ChildItem portable/Velora -Directory -Recurse -Filter __pycache__ | Remove-Item -Recurse -Force
           $root = (Resolve-Path portable/Velora).Path
           Get-ChildItem $root -File -Recurse | Where-Object { $_.Name -ne 'SHA256SUMS.txt' } | Sort-Object FullName | ForEach-Object { (Get-FileHash $_.FullName -Algorithm SHA256).Hash.ToLower() + '  ' + $_.FullName.Substring($root.Length + 1).Replace('\','/') } | Set-Content portable/Velora/SHA256SUMS.txt -Encoding utf8
