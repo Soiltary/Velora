@@ -54,7 +54,7 @@ jobs:
           Remove-Item portable/Velora/qa -Recurse -Force -ErrorAction SilentlyContinue
           Get-ChildItem portable/Velora -Directory -Recurse -Filter __pycache__ | Remove-Item -Recurse -Force
           $root = (Resolve-Path portable/Velora).Path
-          Get-ChildItem $root -File -Recurse | Where-Object { $_.Name -ne 'SHA256SUMS.txt' } | Sort-Object FullName | ForEach-Object { (Get-FileHash $_.FullName -Algorithm SHA256).Hash.ToLower() + '  ' + $_.FullName.Substring($root.Length + 1).Replace('\','/') } | Set-Content portable/Velora/SHA256SUMS.txt -Encoding utf8
+          Get-ChildItem $root -File -Recurse | Where-Object { $_.Name -ne 'SHA256SUMS.txt' } | Sort-Object FullName | ForEach-Object { (Get-FileHash -LiteralPath $_.FullName -Algorithm SHA256).Hash.ToLower() + '  ' + $_.FullName.Substring($root.Length + 1).Replace('\','/') } | Set-Content portable/Velora/SHA256SUMS.txt -Encoding utf8
           Compress-Archive portable/Velora -DestinationPath Velora-Windows-x64-v1.2.0.zip -CompressionLevel Optimal
           $hash = (Get-FileHash Velora-Windows-x64-v1.2.0.zip -Algorithm SHA256).Hash.ToLower()
           "$hash  Velora-Windows-x64-v1.2.0.zip" | Set-Content SHA256SUMS.txt -Encoding ascii
