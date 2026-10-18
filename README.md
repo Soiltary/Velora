@@ -10,11 +10,11 @@ Velora is a Windows desktop tool for converting files and handling everyday file
 
 ## Watch the demo
 
-[![Watch the 18-second Velora demo](docs/media/velora-interface.jpg)](docs/media/Velora-Promo-Shortcuts-18s.mp4)
+[![Velora demo — animated preview](docs/media/velora-demo.gif)](https://github.com/Soiltary/Velora/blob/main/docs/media/Velora-Promo-Shortcuts-18s.mp4)
 
 **[Watch or download the full video](docs/media/Velora-Promo-Shortcuts-18s.mp4)** · MP4 · 18 seconds · 1920 × 1080
 
-Click the image or link to open the video file on GitHub. If a player is unavailable, use the file download button.
+The animated preview above plays directly in this guide without sound. Click it or the full-video link to watch the original MP4 with sound on GitHub. If a player is unavailable, use the file download button.
 
 ## Download
 
