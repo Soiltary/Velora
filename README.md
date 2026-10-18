@@ -1,95 +1,95 @@
 # Velora
 
-**ملفاتك، بصيغة جديدة. — A new form. The same flow.**
+**Your files. A new form. — A new form. The same flow.**
 
 ![Velora](docs/media/velora-cover.jpg)
 
-Velora أداة لسطح مكتب Windows لتحويل الملفات وإجراء تعديلات يومية عليها من واجهة واحدة. يقدّمها الفيديو التعريفي كأداة معالجة محلية، تعمل دون رفع ملفاتك إلى خدمة تحويل على الإنترنت.
+Velora is a Windows desktop tool for converting files and handling everyday file edits in one interface. Its promotional video presents a local processing workflow that keeps your files on your device instead of uploading them to an online conversion service.
 
-> هذا الدليل مبني على الفيديو التعريفي المرفق. لم تُفحص حزمة Windows ولم يُختبر تشغيلها بعد؛ الميزات أدناه هي ما يعرضه الفيديو، وقد يختلف توافرها بحسب النسخة والصيغة.
+> This guide is based on the supplied promotional video. The Windows package has not yet been inspected or tested. The features below are shown in the video; availability may vary by version and file format.
 
-## الفيديو التعريفي
+## Watch the demo
 
-[![شاهد فيديو Velora — 18 ثانية](docs/media/velora-interface.jpg)](docs/media/Velora-Promo-Shortcuts-18s.mp4)
+[![Watch the 18-second Velora demo](docs/media/velora-interface.jpg)](docs/media/Velora-Promo-Shortcuts-18s.mp4)
 
-**[شاهد أو نزّل الفيديو الكامل](docs/media/Velora-Promo-Shortcuts-18s.mp4)** · MP4 · 18 ثانية · 1920 × 1080
+**[Watch or download the full video](docs/media/Velora-Promo-Shortcuts-18s.mp4)** · MP4 · 18 seconds · 1920 × 1080
 
-اضغط الصورة أو الرابط لفتح ملف الفيديو في GitHub. إذا لم يظهر المشغّل، استخدم زر تنزيل الملف.
+Click the image or link to open the video file on GitHub. If a player is unavailable, use the file download button.
 
-## تنزيل الأداة
+## Download
 
-الحزمة المقدّمة تحمل اسم `Velora-Windows-x64 (1).zip`، والمستهدف المعلن لها Windows x64. **لم تُرفع الحزمة بعد، ولا يوجد إصدار تنزيل منشور حتى الآن.**
+The supplied package is named `Velora-Windows-x64 (1).zip` and is intended for Windows x64. **The package has not been uploaded yet, and no downloadable release has been published.**
 
-ستظهر الحزمة بعد نشرها في [صفحة إصدارات Velora](https://github.com/Soiltary/Velora/releases). الفيديو والوثائق لا يحلان محل ملف التطبيق.
+Once published, the application package will be available on the [Velora releases page](https://github.com/Soiltary/Velora/releases). The demo and documentation do not include the application itself.
 
-## ما الذي يقدمه Velora؟
+## Features at a glance
 
-| المجال | ما يعرضه الفيديو |
+| Area | Shown in the demo |
 | --- | --- |
-| تحويل الملفات | صور وفيديو وصوت وPDF ومستندات وجداول بيانات وترجمات |
-| التحويل الجماعي | إضافة عدة ملفات وتحويلها معًا، مع الاحتفاظ بالأصول بحسب العرض |
-| عجلة التحويل | اختيار صيغة من عجلة مرئية والوصول إليها عبر `Ctrl + Space` |
-| PDF | تقسيم ودمج واستخراج النص |
-| الصور | تغيير الحجم والتدوير والضغط |
-| الوسائط | قص الوسائط واستخراج الصوت |
-| المعالجة | معالجة محلية بحسب وصف الفيديو |
+| File conversion | Images, video, audio, PDFs, documents, spreadsheets, and subtitles |
+| Batch conversion | Add and convert multiple files together; the demo describes preserving originals |
+| Conversion wheel | Choose an output format from a visual wheel, accessible with `Ctrl + Space` |
+| PDF tools | Split, merge, and extract text |
+| Image tools | Resize, rotate, and compress |
+| Media tools | Trim media and extract audio |
+| Processing | Local processing, as described in the demo |
 
-يعرض الفيديو مثال تحويل مجموعة صور من PNG إلى WEBP. كما تظهر صيغ PNG وJPG وWEBP وAVIF وTIFF وBMP وICO وPDF في عجلة الصور. ظهور صيغة لا يعني أن كل أنواع الملفات قابلة للتحويل إليها؛ اختر من الخيارات التي يتيحها التطبيق للملف المحدد.
+The demo shows a batch of PNG images being converted to WEBP. The image wheel also displays PNG, JPG, WEBP, AVIF, TIFF, BMP, ICO, and PDF. A format appearing in the wheel does not mean every input can be converted to it; use the options the application offers for your selected file.
 
-## البدء على Windows
+## Get started on Windows
 
-بعد نشر الحزمة:
+After the package is published:
 
-1. نزّل حزمة Windows x64 من صفحة الإصدارات.
-2. فك ضغط الحزمة كاملة في مجلد مستقل قبل تشغيلها؛ احتفظ بالملفات المصاحبة مع التطبيق.
-3. اتبع تعليمات التشغيل الموجودة داخل الحزمة إن توفرت. لم يُتحقق بعد من اسم الملف التنفيذي أو متطلبات التشغيل الإضافية.
-4. ابدأ بملف تجريبي، ثم تحقّق من الناتج قبل معالجة مجموعة ملفات.
+1. Download the Windows x64 package from the releases page.
+2. Extract the entire archive into its own folder before running it. Keep the accompanying files together with the application.
+3. Follow any startup instructions included in the package. The executable name and additional runtime requirements have not yet been verified.
+4. Start with a sample file and inspect the output before processing a larger batch.
 
-لم يُحدد حد أدنى موثّق لإصدار Windows أو الذاكرة، ولم يُتحقق من التوقيع الرقمي للحزمة.
+Minimum Windows and memory requirements have not been documented, and the package's digital signature has not been verified.
 
-## تحويل الملفات خطوة بخطوة
+## Convert files step by step
 
-1. اسحب الملفات إلى مساحة **Drop files. Change their form.**، أو استخدم **+ Add files**. لإضافة مجلد استخدم **+ Folder**.
-2. راجع قائمة الملفات وحالتها في الجدول.
-3. اختر العملية من قائمة **Convert**، ثم اختر صيغة الإخراج التي يتيحها التطبيق.
-4. استخدم **Choose folder** لتحديد مجلد النتائج.
-5. اضغط **Convert files** وانتظر انتهاء المعالجة.
-6. استخدم **Show output** لفتح النتائج ومراجعتها.
+1. Drag files into **Drop files. Change their form.**, or click **+ Add files**. Use **+ Folder** to add a folder.
+2. Review the file list and each file's status in the table.
+3. Select an operation from **Convert**, then choose an available output format.
+4. Click **Choose folder** to select where the results will be saved.
+5. Click **Convert files** and wait for processing to finish.
+6. Click **Show output** to open and review the results.
 
-تظهر أيضًا أزرار **Clear** لتفريغ القائمة و**Reset** لإعادة الضبط. ويشير نص الواجهة إلى إمكانية النقر المزدوج على صف الملف لإظهار الناتج أو الخطأ الخاص به.
+The interface also includes **Clear** to empty the list and **Reset** to reset settings. Its status text says you can double-click a file's row to reveal its output or error.
 
-## عجلة التحويل والاختصارات
+## Conversion wheel and shortcuts
 
-- استخدم **Open wheel** من النافذة أو الاختصار **Ctrl + Space** الموضّح في الفيديو.
-- يعرض الفيديو اختيار ملف وإفلاته على الصيغة المطلوبة في العجلة.
-- يظهر خيار **Enable drag wheel** في الواجهة.
-- راجع **Shortcuts** داخل التطبيق للاختصارات المتاحة في نسختك، و**Help** للتعليمات الإضافية.
+- Click **Open wheel**, or use **Ctrl + Space**, as shown in the demo.
+- The demo shows selecting a file and dropping it onto the desired format in the wheel.
+- An **Enable drag wheel** option is visible in the interface.
+- Open **Shortcuts** for the shortcuts available in your version, and **Help** for additional guidance.
 
-## أدوات PDF والصور والوسائط
+## PDF, image, and media tools
 
-يعرض الفيديو تقسيم ملفات PDF ودمجها واستخراج نصها، وتغيير حجم الصور وتدويرها وضغطها، وقص الوسائط واستخراج الصوت. اختر العملية المناسبة من واجهة نسختك، وحدد الملفات ومجلد النتائج، ثم راجع الناتج. يظهر زر **Merge PDFs** في الواجهة؛ لم يُتحقق من تفاصيل إعدادات هذه العمليات أو حدودها.
+The demo presents PDF splitting, merging, and text extraction; image resizing, rotation, and compression; and media trimming and audio extraction. Select the relevant operation in your version, choose the input files and output folder, and inspect the results. A **Merge PDFs** button is visible in the main interface. Detailed settings and limitations for these operations have not yet been verified.
 
-## الخصوصية
+## Privacy
 
-يركز العرض على **Local processing / Offline / No uploads**: تنفيذ التحويل على الجهاز. هذا وصف العرض التعريفي، وليس نتيجة تدقيق للكود أو لاتصالات حزمة Windows؛ الحزمة لم تكن متاحة للفحص في هذه الجلسة.
+The demo emphasizes **Local processing / Offline / No uploads**, describing conversion on your device. This is the product description shown in the video, rather than the result of a source code or network audit. The Windows package was unavailable for inspection in this session.
 
-## حل المشكلات
+## Troubleshooting
 
-- **لم تظهر الصيغة المطلوبة:** تحقّق من نوع الملف وخيارات الصيغ التي تعرضها نسختك.
-- **فشل التحويل:** راجع حالة الملف ورسالة الخطأ، وجرّب ملفًا صغيرًا معروف الصلاحية ومجلد إخراج قابلًا للكتابة.
-- **لم تجد النتائج:** استخدم **Show output** وتحقّق من المجلد المحدد عبر **Choose folder**.
-- **الاختصار لا يعمل:** جرّب **Open wheel** وراجع إعدادات **Shortcuts** وتعارضات الاختصار مع برامج أخرى.
-- **التطبيق لا يبدأ:** تأكد من فك الحزمة كاملة على Windows x64، ثم أرفق نص الخطأ في بلاغ المشكلة. لا توجد متطلبات إضافية مؤكدة حتى تُفحص الحزمة.
+- **The format you want is missing:** Check the input file type and the formats offered by your installed version.
+- **A conversion fails:** Review the file status and error message. Try a small, known-good input and an output folder you can write to.
+- **You cannot find the results:** Click **Show output** and check the destination selected with **Choose folder**.
+- **The shortcut does not work:** Try **Open wheel**, check **Shortcuts**, and look for shortcut conflicts with other applications.
+- **The application does not start:** Make sure the full package has been extracted on Windows x64, then include the error text in an issue report. Additional requirements cannot be confirmed until the package is inspected.
 
-## الدعم والروابط
+## Support and links
 
-- [مستودع Velora](https://github.com/Soiltary/Velora)
-- [الإصدارات](https://github.com/Soiltary/Velora/releases)
-- [بلاغات المشكلات](https://github.com/Soiltary/Velora/issues)
-- [الفيديو التعريفي](docs/media/Velora-Promo-Shortcuts-18s.mp4)
+- [Velora repository](https://github.com/Soiltary/Velora)
+- [Releases](https://github.com/Soiltary/Velora/releases)
+- [Issue tracker](https://github.com/Soiltary/Velora/issues)
+- [Promotional video](docs/media/Velora-Promo-Shortcuts-18s.mp4)
 
-عند الإبلاغ عن مشكلة، اذكر إصدار Windows ونسخة Velora ونوع الملف وخطوات إعادة المشكلة ونص الخطأ، وتجنب إرفاق ملفات خاصة. إذا لم تكن Issues مفعّلة، استخدم وسيلة التواصل التي يحددها مالك المستودع.
+When reporting a problem, include your Windows version, Velora version, input file type, steps to reproduce, and error message. Avoid sharing private files. If Issues is disabled, use the contact method provided by the repository owner.
 
-## محتويات المستودع وحالة التحقق
+## Repository contents and verification status
 
-يتضمن هذا المستودع الدليل والفيديو والصور المستخرجة منه. لا يتضمن حاليًا كود الأداة أو حزمة Windows. تم التحقق من خصائص الفيديو وقراءة مشاهد العرض، ولم يُجرَ اختبار وظيفي للتطبيق. لا تُفترض رخصة استخدام أو إعادة توزيع لم يُعلنها المالك.
+This repository contains the guide, promotional video, and images extracted from that video. It does not currently include the application source code or Windows package. The video's metadata and displayed scenes have been reviewed; the application has not undergone functional testing. No usage or redistribution license should be assumed unless the owner explicitly provides one.
