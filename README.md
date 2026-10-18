@@ -18,11 +18,11 @@ Click the image or link to open the video file on GitHub. If a player is unavail
 
 ## Download
 
-**[Download Velora for Windows x64](https://github.com/Soiltary/Velora/releases/download/v1.1.1/Velora-Windows-x64.zip)** — portable ZIP, no installer. Supports Windows 10 / 11 x64, according to the included application documentation.
+**Windows x64 portable ZIP prepared (105 MB).** Release asset upload is pending; no public binary download is available yet. The included application documentation targets Windows 10 / 11 x64.
 
 Extract the entire ZIP, then open **Velora.exe**. Keep `runtime/`, `velora/`, `main.py`, and the other accompanying files together. Python, Qt, conversion libraries and FFmpeg are bundled. Office-to-PDF conversion requires LibreOffice installed separately.
 
-See the [release page](https://github.com/Soiltary/Velora/releases/tag/v1.1.1) for the package and SHA-256 checksum, and the [portable application guide](docs/PORTABLE.md) for supported formats and limitations.
+When published, the ZIP and SHA-256 checksum will be available on the [releases page](https://github.com/Soiltary/Velora/releases). See the [portable application guide](docs/PORTABLE.md) for supported formats and limitations.
 
 ## Features at a glance
 
@@ -42,7 +42,7 @@ The demo shows a batch of PNG images being converted to WEBP. The image wheel al
 
 To start the portable application:
 
-1. [Download the Windows x64 ZIP](https://github.com/Soiltary/Velora/releases/download/v1.1.1/Velora-Windows-x64.zip).
+1. Obtain the Windows x64 ZIP once the release assets are published.
 2. Extract the entire archive into its own folder before running it. Keep the accompanying files together with the application.
 3. Open **Velora.exe**. Read `START_HERE.txt` and the included `README.md` for instructions. Office-to-PDF conversion requires LibreOffice.
 4. Start with a sample file and inspect the output before processing a larger batch.
@@ -94,6 +94,6 @@ When reporting a problem, include your Windows version, Velora version, input fi
 
 ## Repository contents and verification status
 
-This repository includes the English guide, promotional media, application source, build inputs, tests, and license notices. The portable Windows package is distributed through GitHub Releases. Unused development assets, caches, temporary files, duplicate libraries and Qt modules were removed; retained executable files are unchanged. Static dependency checks and ZIP integrity checks passed. Windows desktop behavior has not been tested in this session.
+This repository includes the English guide, promotional media, application source, build inputs, tests, and license notices. A smaller portable Windows package has been prepared; its GitHub Release remains a draft until asset upload is completed. Unused development assets, caches, temporary files, duplicate libraries and Qt modules were removed; retained executable files are unchanged. Static dependency checks and ZIP integrity checks passed. Windows desktop behavior has not been tested in this session.
 
 Velora source is licensed under GNU AGPL v3 or later; see [LICENSE.txt](LICENSE.txt). Bundled components retain their own licenses; see [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md).
