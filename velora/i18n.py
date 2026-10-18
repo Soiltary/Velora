@@ -68,6 +68,19 @@ STRINGS = {
 'No changes were made to your original files.':'لم تتغير ملفاتك الأصلية',
 }
 
+STRINGS.update({
+'Choose one key combination, such as Ctrl+Space or Alt+Q.':'اختر اختصارًا واحدًا مثل Ctrl+Space أو Alt+Q',
+'Include Ctrl or Alt so normal typing is not intercepted.':'استخدم Ctrl أو Alt لتجنب التأثير على الكتابة العادية',
+'Use Ctrl or Alt instead of the Windows key.':'استخدم Ctrl أو Alt بدل مفتاح ويندوز',
+'Use Space, a letter, a number, or F1–F12 with Ctrl or Alt.':'استخدم Space أو حرفًا أو رقمًا أو F1–F12 مع Ctrl أو Alt',
+'Ctrl+Shift+Space is reserved for the main window.':'اختصار Ctrl+Shift+Space مخصص لفتح النافذة الرئيسية',
+'Global shortcuts require Windows.':'الاختصارات العامة تتطلب ويندوز',
+'LibreOffice did not produce an output. The input may be unsupported or protected.':'لم ينتج LibreOffice ملفًا • قد يكون الإدخال غير مدعوم أو محميًا',
+'End must be greater than start; times are seconds.':'وقت النهاية يجب أن يكون بعد البداية • الوقت بالثواني',
+'Too many output files with the same name':'عدد الملفات الناتجة بالاسم نفسه كبير جدًا',
+'Choose at least two PDF files. Queue order is merge order.':'اختر ملفي PDF على الأقل • تُدمج بالترتيب الظاهر في القائمة',
+})
+
 
 def language():
     return _language
@@ -91,6 +104,7 @@ def tr(value):
     translated = STRINGS.get(value)
     if translated is None:
         patterns = [
+            (r'^(.*) is already in use or reserved by Windows. Choose another shortcut.$', lambda m:f'الاختصار {m[1]} مستخدم أو محجوز بواسطة ويندوز • اختر اختصارًا آخر'),
             (r'^(\d+) file\(s\) in queue\. Double-click a row to reveal its output or error\.$', lambda m:f'{m[1]} ملفات في قائمة الانتظار • انقر مرتين لعرض النتيجة أو الخطأ'),
             (r'^Done · (\d+) output\(s\)$', lambda m:f'اكتمل • {m[1]} ملفات ناتجة'),
             (r'^Finished: (\d+) succeeded, (\d+) failed or cancelled\.$', lambda m:f'اكتمل: {m[1]} نجح • {m[2]} تعذّر أو أُلغي'),

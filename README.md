@@ -2,7 +2,7 @@
 
 A new form. The same flow.
 
-An independent offline file converter for **Windows 10 / 11, x64**. Drop files, select a format, and convert them locally. Includes a global keyboard shortcut, an Explorer drag wheel, batch conversion, PDF tools, image tools, and a custom app icon. Version **1.1.0**.
+An independent offline file converter for **Windows 10 / 11, x64**. Drop files, select a format, and convert them locally. Includes a global keyboard shortcut, an Explorer drag wheel, batch conversion, PDF tools, image tools, and a custom app icon. Version **1.2.1**.
 
 ## Start
 
@@ -47,8 +47,8 @@ The global wheel is designed for standard Explorer drags on the normal Windows d
 | Images: JPEG, PNG, WebP, HEIC/HEIF, TIFF, AVIF, BMP, GIF, ICO | PNG, JPG, WebP, AVIF, TIFF, BMP, ICO, PDF; resize within bounds, rotate clockwise, grayscale, metadata removal, compression |
 | Video: MP4, MOV, MKV, WebM, AVI, WMV, M4V | MP4, MKV, WebM, MOV, GIF, MP3, WAV; compression, trim, extract audio |
 | Audio: MP3, WAV, FLAC, M4A, AAC, OGG, Opus, AIFF, WMA | MP3, WAV, FLAC, M4A, OGG, Opus, AIFF; trim |
-| PDF | Every page to PNG/JPG; text extraction; split pages; merge PDFs in queue order; lossless cleanup |
-| TXT, Markdown, HTML, DOCX | TXT, HTML, DOCX; PDF via LibreOffice |
+| PDF | Editable Word (.docx), every page to PNG/JPG; text extraction; split pages; merge PDFs in queue order; lossless cleanup |
+| TXT, Markdown, HTML, DOCX | TXT, HTML, DOCX; PDF via LibreOffice, with a built-in basic raster PDF fallback for DOCX |
 | CSV, TSV, XLSX | CSV, TSV, XLSX; PDF via LibreOffice; every worksheet exported separately to delimited files |
 | DOC, ODT, RTF, PPT/PPTX, ODP, XLS, ODS | PDF via LibreOffice |
 | SRT, VTT | SRT, VTT, plain text |
@@ -60,7 +60,7 @@ FFmpeg handles decoding of supported audio and video streams. Support for an ext
 
 - This is an original Windows implementation inspired by Tangerine's interaction. It is not affiliated with Tangerine and does not reproduce all 275 advertised conversion routes or every original feature.
 - SVG, Apple Pages, EPUB, archive extraction, OCR, advanced crop controls, and advanced Office reconstruction are not included.
-- Office PDF output requires a separately installed [LibreOffice](https://www.libreoffice.org/download/download-libreoffice/). Velora detects it; it does not silently install it. No Office files are uploaded.
+- Other Office formats and spreadsheet PDF output require a separately installed [LibreOffice](https://www.libreoffice.org/download/download-libreoffice/). Velora detects it; it does not silently install it. No Office files are uploaded.
 - Direct DOCX/HTML conversions retain text, not complex styling or exact page layouts. Markdown is treated as plain text. For layout-sensitive Word files, use LibreOffice PDF export.
 - Spreadsheet exports use cached formula values, not a new calculation engine. Recalculate and save the workbook in Excel or LibreOffice first. CSV input becomes literal text in XLSX, preventing accidental formula execution.
 - Image exports use the first frame of animated inputs. TIFF output is a single image. Metadata is removed from image exports. Transparency is flattened onto white when required by the target. Resizing preserves aspect ratio and never upscales.
@@ -93,7 +93,7 @@ The portable runtime uses `runtime/python312._pth` with `python312.zip`, `.`, `L
 
 Twelve automated tests cover real image exports, Unicode paths, collision handling, original preservation, actual video/audio conversion, PDF rendering/splitting/merging, subtitle timestamp round-trips, spreadsheet text safety, document conversion, ZIP output, cancellation cleanup, shortcut parsing and conflict recovery, native hotkey message dispatch through an injected API, and the complete hidden-window → open wheel → drag/drop → actual conversion flow. The Qt main window and wheel were rendered and inspected on Linux with the offscreen platform.
 
-The Windows launcher was cross-compiled and its PE resources checked. **Native Windows execution, Explorer drag behavior, tray behavior, and the Windows dependency binaries have not been run in this build environment.** LibreOffice integration requires testing with a local installation. Those checks remain necessary before calling this a fully Windows-validated release.
+The release workflow runs the actual portable Windows Python and Qt libraries through 21 automated conversion, language and shortcut tests before packaging. It also validates ZIP CRC and generates SHA-256 inventories. Desktop behavior with your own applications and separately installed LibreOffice may vary.
 
 ## License
 
