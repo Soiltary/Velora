@@ -1,4 +1,4 @@
-# 1.2.0
+# 1.2.1
 
 - Added bilingual English/Arabic UI, saved language setting, RTL layout and bundled Arabic fonts.
 - Added PDF to editable DOCX with scanned-page image fallback.

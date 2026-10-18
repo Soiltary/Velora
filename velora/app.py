@@ -92,7 +92,7 @@ class DropZone(QFrame):
         layout = QVBoxLayout(self)
         layout.setSpacing(7)
         layout.addStretch()
-        icon = label('↓', 36, ACCENT)
+        icon = label('+', 36, ACCENT)
         icon.setAlignment(Qt.AlignCenter)
         layout.addWidget(icon)
         heading = label('Drop files. Change their form.', 21, '#f1eefb', True)
@@ -178,17 +178,17 @@ class Wheel(QWidget):
                 rad = math.radians(angle)
                 x, y = (230 + 149 * math.cos(rad), 230 + 149 * math.sin(rad))
                 p.setPen(QColor('#ffffff' if i == self.hover else '#ded8ee'))
-                p.setFont(QFont('Noto Sans Arabic' if language() == 'ar' else 'Segoe UI', 10, QFont.DemiBold))
+                p.setFont(QFont('Noto Sans Arabic' if language() == 'ar' else 'Noto Sans', 10, QFont.DemiBold))
                 text = {'copy-path': 'Copy path', 'show-folder': 'Show folder', 'zip': 'ZIP'}.get(item, title(item))
                 p.drawText(QRectF(x - 62, y - 24, 124, 48), Qt.AlignCenter | Qt.TextWordWrap, tr(text))
         p.setPen(Qt.NoPen)
         p.setBrush(QColor('#121018'))
         p.drawEllipse(QRectF(144, 144, 172, 172))
         p.setPen(QColor(ACCENT))
-        p.setFont(QFont('Segoe UI', 17, QFont.Bold))
+        p.setFont(QFont('Noto Sans', 17, QFont.Bold))
         p.drawText(QRectF(145, 185, 170, 32), Qt.AlignCenter, tr('Velora'))
         p.setPen(QColor('#9c94b0'))
-        p.setFont(QFont('Noto Sans Arabic' if language() == 'ar' else 'Segoe UI', 9))
+        p.setFont(QFont('Noto Sans Arabic' if language() == 'ar' else 'Noto Sans', 9))
         caption = ('Drop on a format' if self.items else 'Drag files here') if self.mode == 'convert' else self.mode.title()
         p.drawText(QRectF(145, 224, 170, 38), Qt.AlignCenter | Qt.TextWordWrap, tr(caption))
 
@@ -333,7 +333,7 @@ class Main(QMainWindow):
         branding = QVBoxLayout()
         branding.setSpacing(0)
         wordmark = label('Velora', 28, '#f4f0ff', True)
-        wordmark.setStyleSheet('color:#f4f0ff; font-family:Segoe UI; font-size:28px; font-weight:700;')
+        wordmark.setStyleSheet('color:#f4f0ff; font-family:Noto Sans; font-size:28px; font-weight:700;')
         wordmark.setLayoutDirection(Qt.LeftToRight)
         branding.addWidget(wordmark)
         branding.addWidget(label('A new form. The same flow.', 12))
@@ -469,9 +469,12 @@ class Main(QMainWindow):
         app = QApplication.instance()
         direction = Qt.RightToLeft if language() == 'ar' else Qt.LeftToRight
         app.setLayoutDirection(direction)
-        family = 'Noto Sans Arabic' if language() == 'ar' else 'Segoe UI'
-        app.setStyleSheet(STYLE + '\nQWidget {font-family:"' + family + '";} QPushButton#languageToggle {border-radius:18px; padding:8px 14px;}')
-        app.setFont(QFont(family, 10))
+        family = 'Noto Sans Arabic' if language() == 'ar' else 'Noto Sans'
+        fallback = 'Noto Sans' if language() == 'ar' else 'Noto Sans Arabic'
+        app.setStyleSheet(STYLE + '\nQWidget {font-family:"' + family + '","' + fallback + '";} QPushButton#languageToggle {border-radius:18px; padding:8px 14px;}')
+        app_font = QFont(family, 10)
+        app_font.setFamilies([family, fallback])
+        app.setFont(app_font)
         for widget in app.allWidgets():
             widget.setWindowTitle(tr(widget.windowTitle()))
             if isinstance(widget, (QLabel, QPushButton, QCheckBox)) and widget is not self.language_btn:
@@ -787,7 +790,7 @@ STYLE = '\nQWidget {background:#111016; color:#ddd8eb; font-family:"Segoe UI"; f
 def main():
     app = QApplication(sys.argv)
     app.setApplicationName('Velora')
-    app.setApplicationVersion('1.2.0')
+    app.setApplicationVersion('1.2.1')
     app.setOrganizationName('Velora')
     app.setStyle('Fusion')
     for font in (ROOT/'assets'/'fonts').glob('*.ttf'):

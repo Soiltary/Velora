@@ -100,7 +100,7 @@ The Windows launcher was cross-compiled and its PE resources checked. **Native W
 Velora source code is licensed under GNU AGPL v3 or later; see `LICENSE.txt`. Third-party components retain their respective licenses. See `THIRD_PARTY_NOTICES.md` and the license files in the bundled runtime. The generated Velora artwork is included as the app's original branding.
 
 
-## Version 1.2.0
+## Version 1.2.1
 
 - English / Arabic language switch with saved preference, RTL interface and bundled Noto Sans Arabic fonts.
 - PDF to editable Word (.docx): text and basic styling, page breaks, embedded images; scanned pages stay as images. No OCR or exact layout reconstruction.
@@ -108,6 +108,6 @@ Velora source code is licensed under GNU AGPL v3 or later; see `LICENSE.txt`. Th
 - Support dialog opens https://tip.dokan.sa/solitary only when its button is clicked. Support is optional.
 - Refined Velora wordmark, logo spacing and language control. Existing wheel and global shortcuts remain available.
 
-Download: https://github.com/Soiltary/Velora/releases/download/v1.2.0/Velora-Windows-x64-v1.2.0.zip
+Download: https://github.com/Soiltary/Velora/releases/download/v1.2.1/Velora-Windows-x64-v1.2.1.zip
 
 Full source and the Windows validation / packaging workflow are in this repository.

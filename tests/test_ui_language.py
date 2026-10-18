@@ -15,6 +15,8 @@ for font in (ROOT/'assets/fonts').glob('*.ttf'):QFontDatabase.addApplicationFont
 class LanguageTests(unittest.TestCase):
  def test_switch_preserves_files_target_and_paths(self):
   settings=QSettings('Velora','Velora');settings.setValue('onboarding',False);settings.setValue('language','en')
+  self.assertIn('Noto Sans',QFontDatabase.families())
+  self.assertIn('Noto Sans Arabic',QFontDatabase.families())
   window=Main()
   try:
    with tempfile.TemporaryDirectory() as tmp:

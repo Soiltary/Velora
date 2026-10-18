@@ -1,8 +1,8 @@
-# Velora 1.2.0 for Windows
+# Velora 1.2.1 for Windows
 
 Extract the entire ZIP, then open Velora.exe. Keep the runtime folder beside the launcher. No Python installation is needed.
 
-## New in 1.2.0
+## New in 1.2.1
 
 Use the globe button in the top corner to switch between Arabic and English. The choice is saved. PDF to Word is available as Word (.docx) when you add a PDF. Word to PDF works locally without Office for .docx files.
 

@@ -1,3 +1,5 @@
+Copyright 2022 The Noto Project Authors (https://github.com/notofonts/latin-greek-cyrillic)
+
 Copyright 2022 The Noto Project Authors (https://github.com/notofonts/arabic)
 
 # SIL Open Font
