@@ -41,7 +41,7 @@ def check_archive(path):
     seen=set();total=0
     with zipfile.ZipFile(path) as archive:
         for item in archive.infolist():
-            name=item.filename
+            name=item.orig_filename
             if '\\' in name or not name.startswith('Velora/') or ':' in name:raise ValueError('Unsafe archive path')
             rel=name[len('Velora/'):].rstrip('/')
             if not rel:continue

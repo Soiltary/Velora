@@ -8,7 +8,9 @@ $work=Split-Path -Parent $Archive
 $stage=Join-Path $work 'expanded'
 $backup=Join-Path $work 'previous'
 try {
- if($ExpectedHash -notmatch '^[0-9a-fA-F]{64}$' -or (Get-FileHash -LiteralPath $Archive -Algorithm SHA256).Hash -ne $ExpectedHash){throw 'Update hash mismatch'}
+ $stream=[IO.File]::OpenRead($Archive)
+ try {$algorithm=[Security.Cryptography.SHA256]::Create();try {$actualHash=[BitConverter]::ToString($algorithm.ComputeHash($stream)).Replace('-','')}finally{$algorithm.Dispose()}}finally{$stream.Dispose()}
+ if($ExpectedHash -notmatch '^[0-9a-fA-F]{64}$' -or $actualHash -ne $ExpectedHash){throw 'Update hash mismatch'}
  if(!(Test-Path -LiteralPath (Join-Path $root 'Velora.exe')) -or !(Test-Path -LiteralPath (Join-Path $root 'runtime/pythonw.exe'))){throw 'Not a Velora installation'}
  $zip=[IO.Compression.ZipFile]::OpenRead($Archive)
  $names=New-Object 'System.Collections.Generic.HashSet[string]' ([StringComparer]::OrdinalIgnoreCase)
