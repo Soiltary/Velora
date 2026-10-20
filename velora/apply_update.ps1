@@ -49,6 +49,7 @@ try {
  $failure=$_.Exception.Message
  for($i=$changed.Count-1;$i -ge 0;$i--){$rel=$changed[$i];$saved=Join-Path $backup $rel;$destination=Join-Path $root $rel;try{if(Test-Path -LiteralPath $saved){Copy-Item -LiteralPath $saved -Destination $destination -Force}else{Remove-Item -LiteralPath $destination -Force -ErrorAction SilentlyContinue}}catch{}}
  $failure|Set-Content -LiteralPath (Join-Path $work 'update-error.txt')
+ if($Silent){Write-Output $failure}
  if(!$Silent){[Windows.Forms.MessageBox]::Show('The update could not finish. Previous application files were restored. Details: '+$work,'Velora update')|Out-Null}
  if(!$NoRestart -and (Test-Path -LiteralPath (Join-Path $root 'Velora.exe')) -and !(Get-Process -Id $AppProcess -ErrorAction SilentlyContinue)){Start-Process -FilePath (Join-Path $root 'Velora.exe') -WorkingDirectory $root}
  exit 1
