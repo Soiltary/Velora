@@ -15,6 +15,7 @@ try {
  if($ExpectedHash -notmatch '^[0-9a-fA-F]{64}$' -or $actualHash -ne $ExpectedHash){throw 'Update hash mismatch'}
  if(!(Test-Path -LiteralPath (Join-Path $root 'Velora.exe')) -or !(Test-Path -LiteralPath (Join-Path $root 'runtime/pythonw.exe'))){throw 'Not a Velora installation'}
  $zip=[IO.Compression.ZipFile]::OpenRead($Archive)
+ $files=New-Object System.Collections.Generic.List[string]
  $names=New-Object 'System.Collections.Generic.HashSet[string]' ([StringComparer]::OrdinalIgnoreCase)
  try {
   [long]$total=0
@@ -25,6 +26,7 @@ try {
    if(!$rel){continue}
    foreach($part in $rel.Split('/')){if(!$part -or $part -eq '.' -or $part -eq '..' -or $part.EndsWith('.') -or $part.EndsWith(' ') -or $part -match '[\x00-\x1f]'){throw 'Unsafe update path'}}
    if(!$names.Add($rel) -or (($entry.ExternalAttributes -shr 16) -band 0xf000) -eq 0xa000){throw 'Duplicate or linked update entry'}
+   if(!$name.EndsWith('/')){$files.Add($rel)}
    $total+=$entry.Length;if($total -gt 1258291200){throw 'Expanded update too large'}
   }
   foreach($required in @('main.py','Velora.exe','runtime/pythonw.exe')){if(!$names.Contains($required)){throw 'Incomplete update'}}
@@ -34,8 +36,9 @@ try {
  [IO.Compression.ZipFile]::ExtractToDirectory($Archive,$stage)
  $source=Join-Path $stage 'Velora'
  New-Item -ItemType Directory -Path $backup -Force|Out-Null
- foreach($file in Get-ChildItem -LiteralPath $source -Recurse -File|Sort-Object FullName){
-  $rel=$file.FullName.Substring($source.Length+1)
+ foreach($rel in $files|Sort-Object){
+  $filePath=Join-Path $source $rel
+  if(!(Test-Path -LiteralPath $filePath -PathType Leaf)){throw 'Missing extracted application file'}
   $destination=Join-Path $root $rel
   # Do not follow user-created directory links out of the application folder.
   $parent=Split-Path -Parent $destination
@@ -46,7 +49,7 @@ try {
   if(Test-Path -LiteralPath $destination){$saved=Join-Path $backup $rel;New-Item -ItemType Directory -Path (Split-Path -Parent $saved) -Force|Out-Null;Copy-Item -LiteralPath $destination -Destination $saved -Force}
   $changed.Add($rel)
   New-Item -ItemType Directory -Path $parent -Force|Out-Null
-  Copy-Item -LiteralPath $file.FullName -Destination $destination -Force
+  Copy-Item -LiteralPath $filePath -Destination $destination -Force
  }
  if($changed.Count -eq 0){throw 'No application files were copied'}
  if($Silent){Write-Output ('Copied '+$changed.Count+' files from '+$source+' to '+$root)}
