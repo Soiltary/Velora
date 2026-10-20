@@ -1,5 +1,7 @@
 param([Parameter(Mandatory=$true)][string]$Target,[Parameter(Mandatory=$true)][string]$Archive,[Parameter(Mandatory=$true)][string]$ExpectedHash,[int]$AppProcess,[int]$LauncherProcess,[switch]$NoRestart,[switch]$Silent)
 $ErrorActionPreference='Stop'
+# A parent PowerShell 7 session can pass a module path incompatible with Windows PowerShell.
+$env:PSModulePath=(Join-Path $PSHOME 'Modules')+';'+(Join-Path $env:SystemRoot 'System32/WindowsPowerShell/v1.0/Modules')
 Add-Type -AssemblyName System.IO.Compression.FileSystem
 Add-Type -AssemblyName System.Windows.Forms
 $changed=New-Object System.Collections.Generic.List[string]
@@ -46,6 +48,8 @@ try {
   New-Item -ItemType Directory -Path $parent -Force|Out-Null
   Copy-Item -LiteralPath $file.FullName -Destination $destination -Force
  }
+ if($changed.Count -eq 0){throw 'No application files were copied'}
+ if($Silent){Write-Output ('Copied '+$changed.Count+' files from '+$source+' to '+$root)}
  if(!$NoRestart){Start-Process -FilePath (Join-Path $root 'Velora.exe') -WorkingDirectory $root -ErrorAction Stop}
 } catch {
  $failure=$_.Exception.Message
