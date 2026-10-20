@@ -9,6 +9,7 @@ from PySide6.QtCore import Qt, QTimer, QThread, Signal, QPointF, QRectF, QSettin
 from PySide6.QtGui import QColor, QPainter, QPainterPath, QPen, QFont, QIcon, QPixmap, QDesktopServices, QCursor, QKeySequence, QShortcut, QFontDatabase
 from PySide6.QtWidgets import QApplication, QMainWindow, QWidget, QVBoxLayout, QHBoxLayout, QLabel, QPushButton, QFileDialog, QComboBox, QTableWidget, QTableWidgetItem, QHeaderView, QAbstractItemView, QFrame, QProgressBar, QCheckBox, QSystemTrayIcon, QMenu, QMessageBox, QDialog, QFormLayout, QSpinBox, QDoubleSpinBox, QDialogButtonBox, QKeySequenceEdit
 from . import engine
+from .updates import UpdateController
 from .hotkeys import GlobalHotkeys
 from .i18n import tr, set_language, language, source
 ROOT = Path(getattr(sys, '_MEIPASS', Path(__file__).resolve().parent.parent))
@@ -295,6 +296,7 @@ class Main(QMainWindow):
         self.quitting = False
         self.shortcut = self.settings.value('wheelShortcut', 'Ctrl+Space')
         self.hotkey_error = ''
+        self.updater = UpdateController(self)
         self.create_ui()
         self.create_tray()
         self.apply_language()
@@ -416,6 +418,8 @@ class Main(QMainWindow):
         if os.name != 'nt':
             self.background.setEnabled(False)
             self.background.setToolTip(tr('Desktop-wide key polling is available on Windows.'))
+        self.update_btn = button('Check updates', self.updater.check)
+        footer.addWidget(self.update_btn)
         footer.addWidget(self.background)
         main.addLayout(footer)
         self.refresh_actions()
@@ -428,6 +432,7 @@ class Main(QMainWindow):
         menu.addAction(tr('Open wheel'), self.open_wheel)
         menu.addAction(tr('Shortcuts'), self.shortcut_settings)
         menu.addAction(tr('Support'), self.show_support)
+        menu.addAction(tr('Check updates'), self.updater.check)
         menu.addSeparator()
         menu.addAction(tr('Quit'), self.quit_app)
         self.tray.setContextMenu(menu)
@@ -767,6 +772,10 @@ class Main(QMainWindow):
         self._last_shift, self._last_alt, self._last_ctrl, self._last_hot = (shift, alt, ctrl, hot)
 
     def closeEvent(self, event):
+        if self.updater.running() and not self.tray.isVisible():
+            event.ignore()
+            QMessageBox.information(self, tr('Updates'), tr('Wait for the update operation to finish.'))
+            return
         if self.tray.isVisible() and (not self.quitting):
             self.hide()
             event.ignore()
@@ -779,6 +788,9 @@ class Main(QMainWindow):
             QApplication.quit()
 
     def quit_app(self):
+        if self.updater.running():
+            QMessageBox.information(self, tr('Updates'), tr('Wait for the update operation to finish.'))
+            return
         self.quitting = True
         self.wheel.hide()
         if self.busy():
@@ -790,7 +802,7 @@ STYLE = '\nQWidget {background:#111016; color:#ddd8eb; font-family:"Segoe UI"; f
 def main():
     app = QApplication(sys.argv)
     app.setApplicationName('Velora')
-    app.setApplicationVersion('1.2.1')
+    app.setApplicationVersion('1.3.0')
     app.setOrganizationName('Velora')
     app.setStyle('Fusion')
     for font in (ROOT/'assets'/'fonts').glob('*.ttf'):

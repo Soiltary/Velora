@@ -140,3 +140,7 @@ Full source and the Windows validation / packaging workflow are in this reposito
 - قسم دعم اختياري يساعد على استمرار تطوير الأداة
 
 تحميل **Code → Download ZIP** من GitHub ينزّل المصدر البرمجي؛ لتشغيل البرنامج استخدم رابط **Download Velora for Windows** أعلى الصفحة.
+
+## In-app updates
+
+Velora 1.3.0 adds Check updates in the footer and tray. Newer releases are discovered through https://velora-windows.soltairy.chatgpt.site/downloads/windows-update.json and installed only after confirmation. Finish conversions before installing. Settings and outputs are kept; replaced application files are backed up. Versions before 1.3.0 require a one-time manual download. See docs/RELEASE-1.3.0.md.

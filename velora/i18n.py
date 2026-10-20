@@ -4,6 +4,18 @@ import re
 _language = 'en'
 _reverse = {}
 STRINGS = {
+'Updates':'التحديثات',
+'Check updates':'فحص التحديثات',
+'Checking updates...':'جارٍ فحص التحديثات',
+'Downloading update...':'جارٍ تنزيل التحديث',
+'Update available':'يتوفر تحديث',
+'An update is available. Use Check updates to install it.':'يتوفر تحديث جديد، اضغط فحص التحديثات لتثبيته',
+'You have the latest version.':'لديك أحدث إصدار',
+'Finish the current conversion before updating.':'أكمل التحويل الجاري قبل تثبيت التحديث',
+'Wait for the update operation to finish.':'انتظر انتهاء عملية التحديث',
+'Install update now? Velora will close and reopen. Settings and personal files are kept.':'هل تريد تثبيت التحديث الآن؟ سيُغلق Velora ويُفتح مجددًا مع الاحتفاظ بإعداداتك وملفاتك',
+'Could not download or verify the update. Your installed version is unchanged.':'تعذّر تنزيل التحديث أو التحقق منه، النسخة الحالية محفوظة',
+'Could not launch the updater. Please try again.':'تعذّر تشغيل التحديث، حاول مجددًا',
 'A new form. The same flow.':'ملفاتك بشكل جديد',
 'Drop files. Change their form.':'ملفاتك بشكل جديد',
 'Images · Video · Audio · PDF · Documents · Spreadsheets · Subtitles':'صور • فيديو • صوت • PDF • مستندات • جداول • ترجمة',
